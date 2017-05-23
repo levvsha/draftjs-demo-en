@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 import {
   Editor,
   EditorState,
-  RichUtils
+  RichUtils,
+  CompositeDecorator
 } from 'draft-js';
 
 import {
@@ -21,14 +22,22 @@ export default class DraftEditor extends Component {
   constructor() {
     super();
 
+    const decorator = new CompositeDecorator([
+      {
+        strategy: findLinkEntities,
+        component: Link,
+      },
+    ]);
+
     this.state = {
       inlineToolbar: { show: false },
-      editorState: EditorState.createEmpty()
+      editorState: EditorState.createEmpty(decorator)
     };
 
     this.toggleInlineStyle = ::this.toggleInlineStyle;
     this.handleKeyCommand = ::this.handleKeyCommand;
     this.onChange = ::this.onChange;
+    this.setLink = ::this.setLink;
 
     this.focus = () => this.refs.editor.focus();
   }
@@ -59,6 +68,31 @@ export default class DraftEditor extends Component {
     }
 
     this.setState({ editorState });
+  }
+
+  setLink() {
+    const urlValue = prompt('Введите ссылку', '');
+    const { editorState } = this.state;
+    const contentState = editorState.getCurrentContent();
+
+    const contentStateWithEntity = contentState.createEntity(
+      'LINK',
+      'MUTABLE',
+      { url: urlValue }
+    );
+
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+    const newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
+
+    this.setState({
+      editorState: RichUtils.toggleLink(
+        newEditorState,
+        newEditorState.getSelection(),
+        entityKey
+      )
+    }, () => {
+      setTimeout(() => this.focus(), 0);
+    });
   }
 
   toggleInlineStyle(inlineStyle) {
@@ -95,11 +129,12 @@ export default class DraftEditor extends Component {
           editorState={editorState}
           onToggle={this.toggleInlineStyle}
           position={inlineToolbar.position}
+          setLink={this.setLink}
         />
           : null
         }
         <div className="section-name">
-          Теперь можно выделить текст и применить к выделенному фрагменту стилизацию:
+          Теперь можно обернуть выделенный фрагмент текста в ссылку:
         </div>
         <div
           className="editor"
@@ -122,4 +157,27 @@ const customStyleMap = {
   HIGHLIGHT: {
     backgroundColor: 'palegreen',
   },
+};
+
+function findLinkEntities(contentBlock, callback, contentState) {
+  contentBlock.findEntityRanges(
+    (character) => {
+      const entityKey = character.getEntity();
+      return (
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'LINK'
+      );
+    },
+    callback
+  );
+}
+
+const Link = (props) => {
+  const { url } = props.contentState.getEntity(props.entityKey).getData();
+
+  return (
+    <a href={url} title={url} className="ed-link">
+      {props.children}
+    </a>
+  );
 };
