@@ -1,0 +1,176 @@
+//FONTS
+$Georgia = Georgia serif
+
+define-font(family, size, color, lineHeight = auto, weight = normal, letterSpacing = 0)
+  font-family: family
+  font-size: size
+  font-weight: weight
+  color: color
+  line-height: lineHeight
+  letter-spacing: letterSpacing
+
+.g-sortable-helper
+  z-index: 999999
+  cursor: ew-resize
+
+.c-image-slider
+  position: relative
+  width: 100%
+
+  .icon
+    position: absolute
+    top: 10px
+    z-index: 555
+    cursor: pointer
+    opacity: 0.6
+    transition: opacity 0.35s
+
+    &:hover
+      opacity: 1
+
+    path
+      fill: red
+
+  .icon-settings
+    right: 50px
+
+  .icon-close
+    right: 20px
+
+  .add-button-container
+    text-align: center
+    margin-top: 20px
+
+  .settings-container
+    position: absolute
+    background-color: lightblue
+    z-index: 40
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+
+    .settings-title
+      width: 100%
+      -webkit-user-modify: read-only
+      -moz-user-modify: read-only
+      user-modify: read-only
+      text-align: center
+      margin-bottom: 15px
+      padding: 0 10px
+      box-sizing: border-box
+      define-font($Georgia, 18px, white, 18px)
+
+    .slides
+      display: flex
+
+    .slides-preview-inner
+      width: 100%
+
+    .slides-preview-container
+      width: 100%
+      height: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+
+    .slide-preview-wrapper
+      position: relative
+
+    .slide-preview-image
+      cursor: ew-resize
+
+  .slides-container
+    overflow: hidden
+    position: relative
+
+  .accent
+    background-color: orange
+    border-radius: 2px
+    overflow: hidden
+    padding: 0 5px
+    cursor: pointer
+
+  .slides
+    font-size: 0
+    white-space: nowrap
+    position: relative
+    -webkit-user-modify: read-only
+    -moz-user-modify: read-only
+    user-modify: read-only
+    transition: left 1000ms cubic-bezier(0.86, 0, 0.07, 1) //easeInOutQuint
+
+  .slide
+    display: inline-block
+    height: 100%
+    background-color: lightblue
+
+    .slide-inner
+      height: 100%
+      max-height: 500px
+      display: flex
+      justify-content: center
+      align-items: center
+
+      img
+        max-width: 100%
+        max-height:500px
+
+  .slide-text-title
+    define-font($Georgia, 15px, black, 24px, bold)
+    text-transform: uppercase
+
+  .slide-text-description
+    define-font($Georgia, 12px, black, 18px)
+
+  .slider-footer
+    position: relative
+    user-modify: read-only
+
+  .slides-text-container
+    position: relative
+
+  .slide-text
+    line-height: 1
+    text-align: center
+    margin-top: 6px
+    color: gray
+    font-size: 13px
+
+  .chevron-arrow-left {
+    display: inline-block
+    border-right: 2px solid  #c2c0ee
+    border-bottom: 2px solid  #c2c0ee
+    width: 10px
+    height: 10px
+    transform: rotate(-225deg)
+  }
+
+  .chevron-arrow-right {
+    display: inline-block
+    border-right: 2px solid  #c2c0ee
+    border-bottom: 2px solid  #c2c0ee
+    width: 10px
+    height: 10px
+    transform: rotate(-45deg)
+  }
+
+  .arrow
+    position: absolute
+    top: 0
+    height: 100%
+    padding: 15px 21px
+    cursor: pointer
+    display: flex
+    align-items: center
+    transition: background-color 0.4s linear //easeInOutQuint
+    box-sizing: border-box
+    -webkit-user-modify: read-only
+    -moz-user-modify: read-only
+    user-modify: read-only
+
+    &:hover
+      background-color: rgba(173, 216, 230, 0.44)
+
+    &.right
+      right: 0
