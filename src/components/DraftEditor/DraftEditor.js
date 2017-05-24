@@ -215,7 +215,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Перетащите в область редактора несколько изображений:
+          Откройте консоль и кликнете "Log state" и "Export & log markup":
         </div>
         <div
           className="editor"
