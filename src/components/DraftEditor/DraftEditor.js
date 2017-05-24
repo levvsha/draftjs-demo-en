@@ -185,7 +185,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Теперь можно обернуть выделенный фрагмент текста в ссылку:
+          Перетащите в область редактора несколько изображений:
         </div>
         <div
           className="editor"
