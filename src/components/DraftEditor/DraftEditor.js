@@ -1,6 +1,7 @@
 import './DraftEditor.styl';
 
 import React, { Component } from 'react';
+import { render } from 'react-dom';
 import isSoftNewlineEvent from 'draft-js/lib/isSoftNewlineEvent';
 import { Map } from 'immutable';
 
@@ -9,7 +10,8 @@ import {
   Editor,
   EditorState,
   RichUtils,
-  DefaultDraftBlockRenderMap
+  DefaultDraftBlockRenderMap,
+  convertToRaw
 } from 'draft-js';
 
 import {
@@ -21,12 +23,16 @@ import {
 
 import {
   InlineToolbar,
-  EditorSlider
+  EditorSlider,
+  ContentSlider
 } from 'components';
 
 const urlCreator = window.URL || window.webkitURL;
 
 import _map from 'lodash/map';
+import _forEach from 'lodash/forEach';
+
+import exporter from './exporter';
 
 export default class DraftEditor extends Component {
   constructor() {
@@ -50,10 +56,12 @@ export default class DraftEditor extends Component {
     this.setLink = ::this.setLink;
     this.handleDroppedFiles = ::this.handleDroppedFiles;
     this.handleReturn = ::this.handleReturn;
+    this.logMarkup = ::this.logMarkup;
 
     this.focus = () => this.refs.editor.focus();
     this.getEditorState = () => this.state.editorState;
     this.blockRendererFn = customBlockRenderer(this.onChange, this.getEditorState);
+    this.logState = () => console.log('editor state ==> ', convertToRaw(this.state.editorState.getCurrentContent()));
   }
 
   onChange(editorState) {
@@ -135,6 +143,28 @@ export default class DraftEditor extends Component {
     return 'handled';
   }
 
+  logMarkup() {
+    const raw = exporter(this.state.editorState.getCurrentContent());
+
+    document.getElementById('js-markup-container').innerHTML = raw;
+    console.log('markup ==> ', raw);
+
+    const sliders = document.querySelectorAll('.js-ed-slider');
+
+    _forEach(sliders, slider => {
+      const description = slider.innerHTML;
+
+      slider.innerHTML = ''; // eslint-disable-line
+
+      render((
+        <ContentSlider
+          slides={JSON.parse(slider.getAttribute('data-slides').replace(/'/g, '"'))}
+          descriptionHtml={description}
+        />
+      ), slider);
+    });
+  }
+
   handleKeyCommand(command) {
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -202,6 +232,24 @@ export default class DraftEditor extends Component {
             blockRendererFn={this.blockRendererFn}
             ref="editor"
           />
+        </div>
+        <input
+          onClick={this.logState}
+          className="button"
+          type="button"
+          value="Log state"
+        />
+        <input
+          onClick={this.logMarkup}
+          className="button"
+          type="button"
+          value="Export & log markup"
+        />
+        <div className="result-wrapper">
+          <div className="section-name">
+            Результат:
+          </div>
+          <div className="markup-container" id="js-markup-container"></div>
         </div>
       </div>
     );
