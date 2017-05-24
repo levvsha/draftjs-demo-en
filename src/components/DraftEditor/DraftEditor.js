@@ -99,7 +99,7 @@ export default class DraftEditor extends Component {
 
     const contentStateWithEntity = contentState.createEntity(
       'LINK',
-      'MUTABLE',
+      'IMMUTABLE',
       { url: urlValue }
     );
 
@@ -215,7 +215,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Откройте консоль и кликнете "Log state" и "Export & log markup":
+          Откройте консоль и кликните "Log state" и "Export & log markup":
         </div>
         <div
           className="editor"
