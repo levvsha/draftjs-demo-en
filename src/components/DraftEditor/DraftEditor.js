@@ -15,7 +15,11 @@ export default class DraftEditor extends Component {
       editorState: EditorState.createEmpty()
     };
 
-    this.onChange = (editorState) => this.setState({ editorState });
+    this.onChange = (editorState) => {
+      console.log('editorState ==>', editorState.toJS());
+
+      this.setState({ editorState });
+    }
   }
 
   render() {
