@@ -22,7 +22,7 @@ export default ({ editorState, onToggle, position, setLink }) => {
         {INLINE_STYLES.map(type =>
           <li
             key={type.label}
-            className={`toolbar-item ${ type.style.toLowerCase() } ${ currentStyle.has(type.style) ? 'active' : '' }`}
+            className={`toolbar-item t-${ type.style.toLowerCase() } ${ currentStyle.has(type.style) ? 'active' : '' }`}
             onMouseDown={(e) => {
               e.preventDefault();
               onToggle(type.style);

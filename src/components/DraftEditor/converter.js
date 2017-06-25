@@ -1,16 +1,14 @@
-/* eslint-disable */
-
 import React from 'react';
 import { convertToHTML } from 'draft-convert';
 
 export const styleToHTML = (style) => {
   switch (style) {
     case 'ITALIC':
-      return <em className="ed-italic" />;
+      return <em className="italic" />;
     case 'BOLD':
-      return <strong className="ed-bold" />;
+      return <strong className="bold" />;
     case 'HIGHLIGHT':
-      return <strong className="ed-highlight" />;
+      return <strong className="highlight" />;
     default:
       return null;
   }
@@ -24,7 +22,7 @@ export const blockToHTML = (block) => {
       const slides = block.data.slides;
 
       return {
-        start: `<div class="ed-slider js-ed-slider" data-slides="${ JSON.stringify(slides).replace(/"/g, "'")}"><div>`,
+        start: `<div class="slider js-slider" data-slides="${ JSON.stringify(slides).replace(/"/g, "'")}"><div>`,
         end: `</div></div>`
       }
     }
@@ -33,19 +31,19 @@ export const blockToHTML = (block) => {
   }
 };
 
-export const entityToHTML = (entity, originalText) => {
+export const entityToHTML = (entity, text) => {
   if (entity.type === 'LINK') {
     return (
       <a
-        className="ed-link"
+        className="link"
         href={entity.data.url}
         target="_blank"
       >
-        {originalText}
+        {text}
       </a>
     );
   }
-  return originalText;
+  return text;
 };
 
 export const options = {
@@ -54,4 +52,6 @@ export const options = {
   entityToHTML,
 };
 
-export default (contentState, htmlOptions = options) => convertToHTML(htmlOptions)(contentState);
+const converterFunction = convertToHTML(options);
+
+export default contentState => converterFunction(contentState);

@@ -32,7 +32,7 @@ const urlCreator = window.URL || window.webkitURL;
 import _map from 'lodash/map';
 import _forEach from 'lodash/forEach';
 
-import exporter from './exporter';
+import converter from './converter';
 
 export default class DraftEditor extends Component {
   constructor() {
@@ -61,7 +61,13 @@ export default class DraftEditor extends Component {
     this.focus = () => this.refs.editor.focus();
     this.getEditorState = () => this.state.editorState;
     this.blockRendererFn = customBlockRenderer(this.onChange, this.getEditorState);
-    this.logState = () => console.log('editor state ==> ', convertToRaw(this.state.editorState.getCurrentContent()));
+
+    this.logState = () => {
+      console.log(
+        'editor state ==> ',
+        convertToRaw(this.state.editorState.getCurrentContent())
+      );
+    }
   }
 
   onChange(editorState) {
@@ -127,6 +133,7 @@ export default class DraftEditor extends Component {
   }
 
   handleDroppedFiles(selection, files) {
+    console.log('files ==>', files)
     const filteredFiles = files.filter(file => (file.type.indexOf('image/') === 0));
 
     if (!filteredFiles.length) {
@@ -144,12 +151,12 @@ export default class DraftEditor extends Component {
   }
 
   logMarkup() {
-    const raw = exporter(this.state.editorState.getCurrentContent());
+    const markup = converter(this.state.editorState.getCurrentContent());
 
-    document.getElementById('js-markup-container').innerHTML = raw;
-    console.log('markup ==> ', raw);
+    document.getElementById('js-markup-container').innerHTML = markup;
+    console.log('markup ==> ', markup);
 
-    const sliders = document.querySelectorAll('.js-ed-slider');
+    const sliders = document.querySelectorAll('.js-slider');
 
     _forEach(sliders, slider => {
       const description = slider.innerHTML;
@@ -279,7 +286,7 @@ const Link = (props) => {
   const { url } = props.contentState.getEntity(props.entityKey).getData();
 
   return (
-    <a href={url} title={url} className="ed-link">
+    <a href={url} title={url} className="link">
       {props.children}
     </a>
   );
