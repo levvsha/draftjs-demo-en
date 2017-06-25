@@ -52,8 +52,11 @@ export default class DraftEditor extends Component {
     this.handleReturn = ::this.handleReturn;
 
     this.focus = () => this.refs.editor.focus();
-    this.getEditorState = () => this.state.editorState;
-    this.blockRendererFn = customBlockRenderer(this.onChange, this.getEditorState);
+        this.getEditorState = () => this.state.editorState;
+        this.blockRendererFn = customBlockRenderer(
+          this.onChange,
+          this.getEditorState
+        );
   }
 
   onChange(editorState) {
@@ -119,7 +122,8 @@ export default class DraftEditor extends Component {
   }
 
   handleDroppedFiles(selection, files) {
-    const filteredFiles = files.filter(file => (file.type.indexOf('image/') === 0));
+    const filteredFiles = files
+      .filter(file => (file.type.indexOf('image/') === 0));
 
     if (!filteredFiles.length) {
       return 'not_handled';
@@ -129,7 +133,10 @@ export default class DraftEditor extends Component {
       this.state.editorState,
       selection.getAnchorKey(),
       'SLIDER',
-      new Map({ slides: _map(files, file => ({ url: urlCreator.createObjectURL(file) })) })
+      new Map({ slides: _map(
+        filteredFiles,
+        file => ({ url: urlCreator.createObjectURL(file) })
+      )})
     ));
 
     return 'handled';
@@ -241,12 +248,13 @@ const customBlockRenderer = (setEditorState, getEditorState) => (contentBlock) =
   const type = contentBlock.getType();
 
   switch (type) {
-    case 'SLIDER': return {
-      component: EditorSlider,
-      props: {
-        getEditorState,
-        setEditorState,
-      }
+    case 'SLIDER':
+      return {
+        component: EditorSlider,
+        props: {
+          getEditorState,
+          setEditorState,
+        }
     };
 
     default: return null;
