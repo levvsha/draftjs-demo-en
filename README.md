@@ -1,5 +1,7 @@
 ## Draft.js example
 
+![demo gif](https://raw.githubusercontent.com/levvsha/draftjs-demo/master/images/draft-demo.gif)
+
 Запуск в dev режиме:
 
 `npm install` или `yarn`
