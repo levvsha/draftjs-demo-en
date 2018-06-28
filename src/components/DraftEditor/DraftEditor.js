@@ -33,7 +33,7 @@ export default class DraftEditor extends Component {
           <Editor
             editorState={editorState}
             onChange={this.onChange}
-            placeholder="Здесь можно печатать..."
+            placeholder="You can type here..."
           />
         </div>
       </div>
