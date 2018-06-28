@@ -268,15 +268,15 @@ export default class EditorSlider extends Component {
                         <div className="slides-preview-container">
                           <div className="slides-preview-inner">
                             <div className="settings-title">
-                              Измените порядок, удалите или
+                              Change order, delete or
                               <Dropzone
                                 accept="image/*"
                                 style={{ display: 'inline' }}
                                 onDrop={this.onAddingSlide}
                               >
-                                &nbsp;<span className="accent">добавьте</span>&nbsp;
+                                &nbsp;<span className="accent">add</span>&nbsp;
                               </Dropzone>
-                              слайды
+                              slides
                             </div>
                             <div style={{ position: 'relative' }}>
                               <SortableList
@@ -317,13 +317,13 @@ export default class EditorSlider extends Component {
                   className="arrow left"
                   onClick={this.slideBack}
                 >
-                  <div className="chevron-arrow-left"></div>
+                  <div className="chevron-arrow-left" />
                 </div>
                 <div
                   className="arrow right"
                   onClick={this.slideForward}
                 >
-                  <div className="chevron-arrow-right"></div>
+                  <div className="chevron-arrow-right" />
                 </div>
               </div>
               <div className="slider-footer">

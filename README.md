@@ -1,23 +1,23 @@
-## Draft.js example
+## Draft.js demo for the article
 
 ![demo gif](https://raw.githubusercontent.com/levvsha/draftjs-demo/master/images/draft-demo.gif)
 
-Запуск в dev режиме:
+Run in dev mode:
 
-`npm install` или `yarn`
+`npm install` or `yarn`
 
-`npm start` или `yarn start`
+`npm start` or `yarn start`
 
-открываем http://localhost:3033/
+Open http://localhost:3033/
 
-Ветки:
+Branches:
 
-`starting-point` - стартовая точка, Draft.js компонент добавлен, но редактор, пока, ничего не умеет
+`starting-point`
 
-`inline-stylization` - добавили inline-стилизацию
+`inline-stylization`
 
-`link-entity` - добавили возможность указывать ссылки
+`link-entity`
 
-`custom-component` - добавили кастомный-компонент - слайдер
+`custom-component`
 
-`markup-export` - реализовали экспорт текущего состояния редактора в html разметку
+`markup-export`
