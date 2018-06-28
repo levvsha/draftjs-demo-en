@@ -38,7 +38,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.6.1",
-    "better-npm-run": "^0.0.14",
+    "better-npm-run": "^0.1.0",
     "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.26.1",
     "draft-convert": "^1.4.6",
