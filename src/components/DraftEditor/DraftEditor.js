@@ -134,7 +134,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Теперь можно обернуть выделенный фрагмент текста в ссылку:
+          Now you can wrap the selected text into link:
         </div>
         <div
           className="editor"
