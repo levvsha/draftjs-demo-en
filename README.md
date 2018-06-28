@@ -12,12 +12,12 @@ Open http://localhost:3033/
 
 Branches:
 
-`starting-point`
+`starting-point` - Adding an Editor component.
 
-`inline-stylization`
+`inline-stylization` - Adding an ability to style the selected text
 
-`link-entity`
+`link-entity` - Adding an ability to add links
 
-`custom-component`
+`custom-component` - Adding custom slider component
 
-`markup-export`
+`markup-export` - Exporting content of the editor to HTML markup
