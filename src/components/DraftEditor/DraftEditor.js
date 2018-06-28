@@ -99,7 +99,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Теперь можно выделить текст и применить к выделенному фрагменту стилизацию:
+          Now you can select text and apply stylization:
         </div>
         <div
           className="editor"
