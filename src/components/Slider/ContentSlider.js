@@ -81,13 +81,13 @@ export default class ImageSlider extends Component {
               className="arrow left"
               onClick={this.slideBack}
             >
-              <div className="chevron-arrow-left"></div>
+              <div className="chevron-arrow-left" />
             </div>
             <div
               className="arrow right"
               onClick={this.slideForward}
             >
-              <div className="chevron-arrow-right"></div>
+              <div className="chevron-arrow-right" />
             </div>
           </div>
           <div className="slider-footer">
@@ -95,7 +95,7 @@ export default class ImageSlider extends Component {
               <div
                 className="slide-text"
                 dangerouslySetInnerHTML={{ __html: descriptionHtml }}
-              ></div>
+              />
             </div>
           </div>
         </div>

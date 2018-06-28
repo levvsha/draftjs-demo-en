@@ -222,7 +222,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Откройте консоль и кликните "Log state" и "Export & log markup":
+          Open console and click the "Export & log markup" button:
         </div>
         <div
           className="editor"
@@ -256,7 +256,7 @@ export default class DraftEditor extends Component {
           <div className="section-name">
             Результат:
           </div>
-          <div className="markup-container" id="js-markup-container"></div>
+          <div className="markup-container" id="js-markup-container" />
         </div>
       </div>
     );
