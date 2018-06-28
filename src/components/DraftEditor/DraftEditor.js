@@ -192,7 +192,7 @@ export default class DraftEditor extends Component {
           : null
         }
         <div className="section-name">
-          Перетащите в область редактора несколько изображений:
+          Drug and drom some images to the editor area:
         </div>
         <div
           className="editor"
