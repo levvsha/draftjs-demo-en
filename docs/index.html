@@ -1,16 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Draft.js demo</title>
+    <title>Draft.js demos</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>
+        body {
+            background-color: #f5ab98;
+            font-size: 14px;
+            font-family: Lucida Console,Monaco,monospace;
+        }
+
+        .about {
+            margin-bottom: 30px;
+        }
+
+        .list-container {
+            text-align: center;
+            padding-top: 200px;
+        }
+
+        .list {
+            margin: 0 auto;
+            text-align: left;
+            display: inline-block;
+        }
+    </style>
 </head>
 <body>
-    <a rel="stylesheet" href="link-entity">Adding an Editor component</a>
-    <a rel="stylesheet" href="inline-stylization">Adding an ability to style the selected text</a>
-    <a rel="stylesheet" href="link-entity">Adding an ability to add links</a>
-    <a rel="stylesheet" href="custom-component">Adding custom slider component</a>
-    <a rel="stylesheet" href="markup-export">Exporting content of the editor to HTML markup</a>
+<div class="list-container">
+    <div class="about">
+        Demo-pages for <a target="_blank" href="">the blog post</a>.
+    </div>
+    <ul class="list">
+        <li>
+            <a rel="stylesheet" href="starting-point">Step 1. Added an Editor component.</a>
+        </li>
+        <li>
+            <a rel="stylesheet" href="inline-stylization">Step 2. Added an ability to style the selected text.</a>
+        </li>
+        <li>
+            <a rel="stylesheet" href="link-entity">Step 3. Added an ability to add links.</a>
+        </li>
+        <li>
+            <a rel="stylesheet" href="custom-component">Step 4. Added a custom slider component.</a>
+        </li>
+        <li>
+            <a rel="stylesheet" href="markup-export">Step 5. Added an ability to export content of the editor to HTML markup.</a>
+        </li>
+    </ul>
+</div>
 </body>
 </html>
