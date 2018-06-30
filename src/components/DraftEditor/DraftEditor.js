@@ -29,8 +29,9 @@ export default class DraftEditor extends Component {
 
     return (
       <div id="editor-container" className="c-editor-container js-editor-container">
-        <div className="editor">
+        <div className="editor" onClick={() => this.refs.editor.focus()}>
           <Editor
+            ref="editor"
             editorState={editorState}
             onChange={this.onChange}
             placeholder="You can type here..."
