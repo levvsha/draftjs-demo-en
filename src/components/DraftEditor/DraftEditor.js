@@ -71,7 +71,7 @@ export default class DraftEditor extends Component {
   }
 
   setLink() {
-    const urlValue = prompt('Введите ссылку', '');
+    const urlValue = prompt('Paste URL', '');
     const { editorState } = this.state;
     const contentState = editorState.getCurrentContent();
 
