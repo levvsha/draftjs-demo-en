@@ -1,6 +1,6 @@
 ## Draft.js demo for the article
 
-![demo gif](https://raw.githubusercontent.com/levvsha/draftjs-demo/master/images/draft-demo.gif)
+![demo gif](https://raw.githubusercontent.com/levvsha/draftjs-demo-en/master/images/draft-demo.gif)
 
 Run in dev mode:
 
